@@ -82,7 +82,7 @@ ensure_data_folder()
 # ============================================================
 
 @app.route("/")
-def login():
+def index():
 
     if "teacher_id" in session:
         return redirect(url_for("dashboard"))
@@ -91,28 +91,35 @@ def login():
 
 
 # ============================================================
-# ===== PROCESS LOGIN =========================================
+# ===== LOGIN (GET shows the page, POST authenticates) ========
 # ============================================================
 
-@app.route("/login", methods=["POST"])
-def process_login():
+@app.route("/login", methods=["GET", "POST"])
+def login():
 
-    username = request.form.get("username", "").strip()
-    password = request.form.get("password", "")
+    if request.method == "POST":
 
-    teacher = get_teacher_by_username(username)
+        username = request.form.get("username", "").strip()
+        password = request.form.get("password", "")
 
-    if teacher and check_password_hash(teacher["password_hash"], password):
+        teacher = get_teacher_by_username(username)
 
-        session["teacher_id"] = teacher["id"]
-        session["username"] = teacher["username"]
+        if teacher and check_password_hash(teacher["password_hash"], password):
 
+            session["teacher_id"] = teacher["id"]
+            session["username"] = teacher["username"]
+
+            return redirect(url_for("dashboard"))
+
+        return render_template(
+            "login.html",
+            error="Invalid username or password"
+        )
+
+    if "teacher_id" in session:
         return redirect(url_for("dashboard"))
 
-    return render_template(
-        "login.html",
-        error="Invalid username or password"
-    )
+    return render_template("login.html")
 
 
 # ============================================================
