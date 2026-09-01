@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance | Smart Attendance</title>
+
+    <!-- Attendance CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/attendance.css') }}">
+</head>
+
+<body>
+
+<div class="attendance-page">
+
+    <!-- ===== MESSAGE BANNER ===== -->
+
+    <div id="attendanceMessage"
+         class="message-banner"
+         style="display:none;"></div>
+
+
+    <!-- Page heading -->
+    <div class="page-header">
+        <p>VOICE ATTENDANCE</p>
+        <h1>Take Attendance</h1>
+        <span>Take attendance using roll numbers and voice recognition.</span>
+    </div>
+
+
+    <!-- Session details -->
+    <div class="attendance-card">
+
+        <h2>Attendance Session</h2>
+
+        <div class="form-row three-col">
+
+            <div class="form-group">
+                <label>Date</label>
+
+                <input type="date"
+                       id="attendanceDate">
+            </div>
+
+            <div class="form-group">
+                <label>Subject</label>
+
+                <input type="text"
+                       id="subject"
+                       placeholder="Enter subject name"
+                       value="Python Programming">
+            </div>
+
+
+            <div class="form-group">
+                <label>Lecture Type</label>
+
+                <select id="lectureType">
+                    <option>Theory</option>
+                    <option>Practical</option>
+                    <option>Extra</option>
+                </select>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Attendance mode -->
+    <div class="attendance-card mode-card">
+
+        <div>
+            <h2>Attendance Mode</h2>
+            <p>Choose how the class strength should be determined.</p>
+        </div>
+
+        <div class="mode-toggle">
+
+            <button type="button"
+                    id="modeFile"
+                    class="mode-btn active"
+                    data-mode="file_upload">
+                📁 Upload Student File
+            </button>
+
+            <button type="button"
+                    id="modeClass"
+                    class="mode-btn"
+                    data-mode="class_strength">
+                👥 Take Attendance Using Class Strength
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Class strength (only in class-strength mode) -->
+    <div class="attendance-card class-strength-card"
+         id="classStrengthCard"
+         style="display:none;">
+
+        <div>
+            <h2>Class Strength</h2>
+            <p>
+                Enter the total number of students in the class. Absent
+                rolls will be computed as the difference.
+            </p>
+        </div>
+
+        <div>
+            <div class="strength-quick">
+                <button type="button" class="strength-chip" data-strength="10">10</button>
+                <button type="button" class="strength-chip" data-strength="20">20</button>
+                <button type="button" class="strength-chip" data-strength="30">30</button>
+                <button type="button" class="strength-chip" data-strength="40">40</button>
+                <button type="button" class="strength-chip" data-strength="50">50</button>
+                <button type="button" class="strength-chip" data-strength="60">60</button>
+                <button type="button" class="strength-chip" data-strength="70">70</button>
+                <button type="button" class="strength-chip" data-strength="80">80</button>
+                <button type="button" class="strength-chip" data-strength="90">90</button>
+                <button type="button" class="strength-chip" data-strength="100">100</button>
+            </div>
+
+            <div class="form-group strength-custom">
+                <label>Custom Class Strength</label>
+
+                <input type="number"
+                       id="classStrength"
+                       min="1"
+                       max="500"
+                       placeholder="e.g. 67">
+            </div>
+
+            <p class="strength-hint" id="strengthHint"></p>
+        </div>
+
+    </div>
+
+
+    <!-- Student list -->
+    <div class="attendance-card upload-card">
+
+        <div>
+            <h2>Student List <small>Optional</small></h2>
+
+            <p>
+                Upload a student Excel (.xlsx / .xls) or Word (.docx) file,
+                or use the list already uploaded on the
+                <strong>Students</strong> page.
+                Voice attendance works with or without an uploaded list.
+            </p>
+
+            <p id="studentCountInfo"
+               class="student-count-info">
+                {% if has_students %}
+                    Using uploaded list:
+                    <strong>{{ students|length }} student(s)</strong>.
+                {% else %}
+                    No student list uploaded yet.
+                {% endif %}
+            </p>
+        </div>
+
+
+        <div class="upload-box">
+
+            <input type="file"
+                   id="studentFile"
+                   accept=".csv,.xlsx,.xls,.docx">
+
+            <label for="studentFile">
+                📁 Upload Student File
+            </label>
+
+            <span id="fileName">No file selected</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Voice attendance -->
+    <div class="attendance-card voice-card">
+
+        <div class="voice-header">
+
+            <div>
+                <h2>Voice Roll Call</h2>
+                <p id="voiceMessage">
+                    Click Start Attendance to begin.
+                </p>
+            </div>
+
+            <div class="status" id="status">
+                <span></span>
+                Ready
+            </div>
+
+        </div>
+
+
+        <!-- Main microphone -->
+        <div class="mic-section">
+
+            <div class="mic-circle">
+                🎤
+            </div>
+
+            <p id="detectedText">
+                Waiting for attendance...
+            </p>
+
+        </div>
+
+
+        <!-- Buttons -->
+        <div class="button-section">
+
+            <button id="startAttendance" class="start-btn">
+                🎤 Start Attendance
+            </button>
+
+            <button id="stopAttendance"
+                    class="stop-btn"
+                    disabled>
+                ■ Stop
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Live summary -->
+    <div class="attendance-card">
+
+        <div class="list-header">
+
+            <div>
+                <h2>Session Summary</h2>
+                <p>Live counts for this session.</p>
+            </div>
+
+        </div>
+
+        <div class="live-summary">
+
+            <div class="summary-chip">
+                <p>Total Students</p>
+                <h3 id="totalCount">0</h3>
+            </div>
+
+            <div class="summary-chip">
+                <p>Present</p>
+                <h3 id="presentLiveCount">0</h3>
+            </div>
+
+            <div class="summary-chip">
+                <p>Absent</p>
+                <h3 id="absentLiveCount">0</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Present students -->
+    <div class="attendance-card">
+
+        <div class="list-header">
+
+            <div>
+                <h2>Present Roll Numbers</h2>
+                <p>Roll numbers recorded in this session.</p>
+            </div>
+
+            <div class="count" id="presentCount">
+                0
+            </div>
+
+        </div>
+
+
+        <div id="emptyMessage" class="empty-message">
+            🎤
+            <p>No roll numbers recorded yet.</p>
+        </div>
+
+
+        <div id="rollNumberList"
+             class="roll-list">
+        </div>
+
+    </div>
+
+
+    <!-- Absent students -->
+    <div class="attendance-card absent-card">
+
+        <div class="list-header">
+
+            <div>
+                <h2>Absent Students</h2>
+                <p>
+                    Students in the uploaded list not yet detected.
+                    They are only marked absent when you Save Attendance.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div id="absentMessage" class="empty-absent">
+            <p>No absent students to show yet.</p>
+        </div>
+
+
+        <div id="absentList"
+             class="absent-list">
+        </div>
+
+    </div>
+
+
+    <!-- Save / Export -->
+    <div class="attendance-card export-card">
+
+        <div>
+            <h2>Finish Session</h2>
+
+            <p>
+                Save the attendance record or export the roll numbers.
+                Saving marks undetected students as Absent.
+            </p>
+        </div>
+
+        <div class="export-actions">
+
+            <button id="saveAttendance"
+                    class="export-btn save-btn"
+                    disabled>
+                💾 Save Attendance
+            </button>
+
+            <button id="exportAttendance"
+                    class="export-btn">
+                ↓ Export CSV
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/attendance.js') }}"></script>
+
+</body>
+</html>

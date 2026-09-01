@@ -1,0 +1,824 @@
+/* =====================================================
+   SMART ATTENDANCE - DASHBOARD
+   ===================================================== */
+
+
+/* ===== BASIC RESET ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ===== PAGE ===== */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #181818;
+}
+
+
+/* =====================================================
+   MAIN LAYOUT
+   ===================================================== */
+
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+    background: #ffffff;
+}
+
+
+/* =====================================================
+   SIDEBAR
+   ===================================================== */
+
+.sidebar {
+    width: 180px;
+    min-height: 100vh;
+    background: #FFFDF5;
+    border-right: 1px solid #EEEEEE;
+    padding: 18px 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ===== SIDEBAR BRAND ===== */
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 8px 25px;
+}
+
+
+/* ===== LOGO ===== */
+
+.sidebar-logo {
+    position: relative;
+    width: 39px;
+    height: 39px;
+    border: 2px solid #F2BE18;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #E6B100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+}
+
+
+/* ===== MIC ===== */
+
+.sidebar-mic {
+    position: absolute;
+    right: -5px;
+    bottom: -4px;
+
+    width: 17px;
+    height: 17px;
+
+    border-radius: 50%;
+    background: #E6B100;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 8px;
+}
+
+
+/* ===== BRAND TEXT ===== */
+
+.brand-text h2 {
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 800;
+}
+
+
+.brand-text h2 span {
+    display: block;
+    color: #E2AD00;
+}
+
+
+/* =====================================================
+   SIDEBAR MENU
+   ===================================================== */
+
+.sidebar-menu {
+    flex: 1;
+}
+
+
+/* ===== MENU ITEM ===== */
+
+.menu-item {
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 10px;
+
+    margin-bottom: 4px;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    color: #343434;
+
+    font-size: 11px;
+
+    transition: 0.2s;
+}
+
+
+/* ===== MENU ICON ===== */
+
+.menu-item i {
+    width: 16px;
+    text-align: center;
+    font-size: 13px;
+}
+
+
+/* ===== HOVER ===== */
+
+.menu-item:hover {
+    background: #FFF4C9;
+    color: #9C7800;
+}
+
+
+/* ===== ACTIVE ===== */
+
+.menu-item.active {
+    background: #FFD83D;
+    color: #181818;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   SIDEBAR BOTTOM
+   ===================================================== */
+
+.sidebar-bottom {
+    border-top: 1px solid #EEEEEE;
+    padding-top: 10px;
+}
+
+
+/* ===== LOGOUT ===== */
+
+.menu-item.logout {
+    margin-top: 3px;
+    color: #555555;
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+   ===================================================== */
+
+.main-content {
+    flex: 1;
+    padding: 25px 30px;
+    background: #ffffff;
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+
+/* ===== GREETING ===== */
+
+.header-left h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+
+.header-left p {
+    font-size: 10px;
+    color: #777777;
+}
+
+
+/* ===== DATE ===== */
+
+.header-date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 7px 10px;
+
+    border: 1px solid #EEEEEE;
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    font-size: 9px;
+    color: #666666;
+}
+
+
+.header-date i {
+    color: #D7A700;
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   STATISTICS
+   ===================================================== */
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+
+    margin-bottom: 14px;
+}
+
+
+/* ===== STAT CARD ===== */
+
+.stat-card {
+    min-height: 92px;
+
+    background: #ffffff;
+
+    border: 1px solid #EEEEEE;
+    border-radius: 9px;
+
+    padding: 13px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.025);
+}
+
+
+/* ===== STAT TEXT ===== */
+
+.stat-content p {
+    font-size: 9px;
+    color: #777777;
+    margin-bottom: 6px;
+}
+
+
+.stat-content h2 {
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+
+.stat-content span {
+    font-size: 8px;
+    color: #888888;
+}
+
+
+.stat-content a {
+    font-size: 8px;
+    color: #A47C00;
+    text-decoration: none;
+}
+
+
+/* ===== SUCCESS ===== */
+
+.success-text {
+    color: #5C9B72 !important;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   STAT ICONS
+   ===================================================== */
+
+.stat-icon {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+}
+
+
+/* ===== STUDENTS ===== */
+
+.students-icon {
+    background: #FFF2B8;
+    color: #D2A000;
+}
+
+
+/* ===== PRESENT ===== */
+
+.present-icon {
+    background: #E7F6EC;
+    color: #4E9C68;
+}
+
+
+/* ===== CHART ===== */
+
+.chart-icon {
+    background: #FFF2C7;
+    color: #D2A000;
+}
+
+
+/* ===== CALENDAR ===== */
+
+.calendar-icon {
+    background: #FFF7DD;
+    color: #D5A500;
+}
+
+
+/* =====================================================
+   LOWER DASHBOARD
+   ===================================================== */
+
+.dashboard-cards {
+    display: grid;
+
+    grid-template-columns:
+        1.15fr
+        0.9fr
+        0.9fr;
+
+    gap: 10px;
+}
+
+
+/* ===== DASHBOARD CARD ===== */
+
+.dashboard-card {
+    background: #ffffff;
+
+    border: 1px solid #EEEEEE;
+
+    border-radius: 9px;
+
+    padding: 15px;
+
+    min-height: 210px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.025);
+}
+
+
+/* =====================================================
+   CARD TITLES
+   ===================================================== */
+
+.card-title,
+.card-heading {
+    margin-bottom: 12px;
+}
+
+
+.card-title h3,
+.card-heading h3 {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   TODAY'S ATTENDANCE
+   ===================================================== */
+
+
+/* ===== THEORY LABEL ===== */
+
+.class-type {
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    border-radius: 4px;
+
+    background: #FFF1A8;
+
+    color: #8F6D00;
+
+    font-size: 8px;
+
+    margin-bottom: 8px;
+}
+
+
+/* ===== SUBJECT ===== */
+
+.today-attendance h2 {
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+
+/* ===== CLASS INFO ===== */
+
+.class-info {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    margin-bottom: 15px;
+}
+
+
+.class-info div {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    font-size: 8px;
+    color: #777777;
+}
+
+
+.class-info i {
+    width: 12px;
+    color: #C79500;
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   START ATTENDANCE BUTTON
+   ===================================================== */
+
+.start-attendance-button {
+    width: 100%;
+
+    height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    border-radius: 5px;
+
+    background: #FFC900;
+
+    color: #181818;
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+
+.start-attendance-button:hover {
+    background: #EFB700;
+}
+
+
+/* =====================================================
+   RECENT SESSIONS
+   ===================================================== */
+
+
+/* ===== SESSION ROW ===== */
+
+.session-row {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #F0F0F0;
+}
+
+
+.session-row:last-of-type {
+    border-bottom: none;
+}
+
+
+/* ===== SESSION NAME ===== */
+
+.session-row strong {
+    display: block;
+
+    font-size: 9px;
+
+    margin-bottom: 4px;
+}
+
+
+/* ===== SESSION DATE ===== */
+
+.session-row span {
+    display: block;
+
+    font-size: 8px;
+
+    color: #999999;
+}
+
+
+/* ===== SESSION PERCENTAGE ===== */
+
+.session-row small {
+    font-size: 8px;
+
+    padding: 4px 6px;
+
+    border-radius: 4px;
+
+    background: #EDF7F0;
+
+    color: #4C9564;
+}
+
+
+/* =====================================================
+   VIEW SESSIONS
+   ===================================================== */
+
+.view-sessions {
+    display: inline-block;
+
+    margin-top: 9px;
+
+    font-size: 8px;
+
+    color: #A47C00;
+
+    text-decoration: none;
+}
+
+
+/* =====================================================
+   SYLLABUS PROGRESS
+   ===================================================== */
+
+
+/* ===== SUBJECT ===== */
+
+.syllabus-subject {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 25px;
+
+    margin-bottom: 9px;
+}
+
+
+.syllabus-subject strong {
+    font-size: 9px;
+}
+
+
+.syllabus-subject span {
+    font-size: 9px;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   PROGRESS BAR
+   ===================================================== */
+
+.progress-bar {
+    width: 100%;
+    height: 7px;
+
+    background: #EEEEEE;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+
+/* ===== PROGRESS ===== */
+
+.progress-fill {
+    width: 80%;
+    height: 100%;
+
+    background: #FFC900;
+
+    border-radius: 10px;
+}
+
+
+/* ===== PROGRESS INFO ===== */
+
+.progress-info {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 8px;
+
+    font-size: 8px;
+
+    color: #888888;
+}
+
+
+.progress-info strong {
+    color: #555555;
+}
+
+
+/* ===== SYLLABUS LINK ===== */
+
+.syllabus-link {
+    display: inline-block;
+
+    margin-top: 22px;
+
+    font-size: 8px;
+
+    color: #A47C00;
+
+    text-decoration: none;
+}
+
+
+/* =====================================================
+   RESPONSIVE - TABLET
+   ===================================================== */
+
+@media (max-width: 1100px) {
+
+    .sidebar {
+        width: 165px;
+    }
+
+
+    .main-content {
+        padding: 22px;
+    }
+
+
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .dashboard-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .today-attendance {
+        grid-column: span 2;
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE - MOBILE
+   ===================================================== */
+
+@media (max-width: 700px) {
+
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+
+    /* ===== MOBILE SIDEBAR ===== */
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+
+        padding: 12px;
+    }
+
+
+    .sidebar-brand {
+        padding-bottom: 12px;
+    }
+
+
+    .sidebar-menu {
+        display: flex;
+
+        gap: 4px;
+
+        overflow-x: auto;
+    }
+
+
+    .sidebar-menu .menu-item {
+        min-width: max-content;
+
+        margin-bottom: 0;
+    }
+
+
+    .sidebar-bottom {
+        display: flex;
+
+        gap: 4px;
+
+        border-top: none;
+
+        padding-top: 8px;
+    }
+
+
+    /* ===== MAIN ===== */
+
+    .main-content {
+        padding: 18px 12px;
+    }
+
+
+    /* ===== HEADER ===== */
+
+    .dashboard-header {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+
+    .header-left h1 {
+        font-size: 16px;
+    }
+
+
+    .header-date {
+        font-size: 8px;
+    }
+
+
+    /* ===== STATS ===== */
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* ===== LOWER CARDS ===== */
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+
+    .today-attendance {
+        grid-column: auto;
+    }
+
+}

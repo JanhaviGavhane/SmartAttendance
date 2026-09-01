@@ -1,0 +1,941 @@
+/* =====================================================
+   SMART ATTENDANCE - LOGIN PAGE
+   ===================================================== */
+
+
+/* ===== BASIC RESET ===== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ===== PAGE ===== */
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #ffffff;
+
+    color: #181818;
+
+    min-height: 100vh;
+
+}
+
+
+/* =====================================================
+   MAIN LOGIN BOX
+   ===================================================== */
+
+
+/* ===== MAIN BOX ===== */
+
+.login-container {
+
+    width: calc(100% - 70px);
+
+    max-width: 1400px;
+
+    min-height: 690px;
+
+    margin: 8px auto;
+
+    display: grid;
+
+    grid-template-columns: 1.05fr 0.95fr;
+
+    overflow: hidden;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 25px rgba(0, 0, 0, 0.07);
+
+}
+
+
+/* =====================================================
+   LEFT SECTION
+   ===================================================== */
+
+
+/* ===== LEFT BACKGROUND ===== */
+
+.left-section {
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 35px 70px;
+
+    background: #FFE9A6;
+
+}
+
+
+/* ===== WHITE CURVE ===== */
+
+.left-section::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 340px;
+
+    height: 850px;
+
+    right: -190px;
+
+    top: -80px;
+
+    background: rgba(255, 255, 255, 0.58);
+
+    border-radius: 50%;
+
+    transform: rotate(-10deg);
+
+}
+
+
+/* =====================================================
+   BRAND
+   ===================================================== */
+
+
+/* ===== BRAND ===== */
+
+.brand {
+
+    position: relative;
+
+    z-index: 3;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+}
+
+
+/* ===== LOGO ===== */
+
+.brand-logo {
+
+    position: relative;
+
+    width: 70px;
+
+    height: 70px;
+
+    border: 3px solid #F2BE18;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #F2BE18;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+/* ===== CHECK ===== */
+
+.brand-logo > i {
+
+    font-size: 43px;
+
+    font-weight: bold;
+
+}
+
+
+/* ===== BRAND MIC ===== */
+
+.brand-mic {
+
+    position: absolute;
+
+    right: -4px;
+
+    bottom: -4px;
+
+    width: 28px;
+
+    height: 28px;
+
+    border-radius: 50%;
+
+    background: #F2BE18;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 13px;
+
+}
+
+
+/* ===== BRAND TEXT ===== */
+
+.brand-text h1 {
+
+    font-size: 34px;
+
+    line-height: 0.95;
+
+    font-weight: 800;
+
+}
+
+
+.brand-text h1 span {
+
+    display: block;
+
+    color: #E8B000;
+
+}
+
+
+.brand-text p {
+
+    margin-top: 9px;
+
+    font-size: 13px;
+
+    color: #514A30;
+
+}
+
+
+/* =====================================================
+   INTRO
+   ===================================================== */
+
+
+/* ===== INTRO ===== */
+
+.intro {
+
+    position: relative;
+
+    z-index: 3;
+
+    margin-top: 48px;
+
+}
+
+
+/* ===== INTRO HEADING ===== */
+
+.intro h2 {
+
+    font-size: 28px;
+
+    line-height: 1.12;
+
+    font-weight: 800;
+
+    margin-bottom: 24px;
+
+}
+
+
+/* ===== INTRO TEXT ===== */
+
+.intro p {
+
+    width: 420px;
+
+    max-width: 100%;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    color: #332F22;
+
+}
+
+
+/* =====================================================
+   FEATURES
+   ===================================================== */
+
+
+/* ===== FEATURES ===== */
+
+.features {
+
+    position: relative;
+
+    z-index: 3;
+
+    margin-top: 20px;
+
+}
+
+
+/* ===== FEATURE ===== */
+
+.feature {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 11px;
+
+    font-size: 13px;
+
+}
+
+
+/* ===== FEATURE ICON ===== */
+
+.feature-icon {
+
+    width: 31px;
+
+    height: 31px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #D5A800;
+
+}
+
+
+/* =====================================================
+   RIGHT SECTION
+   ===================================================== */
+
+
+/* ===== RIGHT BACKGROUND ===== */
+
+.right-section {
+
+    background: #ffffff;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 40px;
+
+}
+
+
+/* ===== LOGIN CARD ===== */
+
+.login-card {
+
+    width: 100%;
+
+    max-width: 430px;
+
+    padding: 32px;
+
+    background: #ffffff;
+
+    border: 1px solid #E6E6E6;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 7px 25px rgba(0, 0, 0, 0.06);
+
+}
+
+
+/* =====================================================
+   LOGIN TITLE
+   ===================================================== */
+
+
+/* ===== TITLE ===== */
+
+.login-title {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+}
+
+
+/* ===== TITLE ICON ===== */
+
+.login-title i {
+
+    font-size: 25px;
+
+    color: #C69500;
+
+}
+
+
+/* ===== TITLE TEXT ===== */
+
+.login-title h2 {
+
+    font-size: 24px;
+
+}
+
+
+.login-title h2 span {
+
+    color: #DDAE00;
+
+}
+
+
+/* ===== SUBTITLE ===== */
+
+.subtitle {
+
+    text-align: center;
+
+    margin-top: 10px;
+
+    margin-bottom: 25px;
+
+    font-size: 13px;
+
+    color: #555;
+
+}
+
+
+/* =====================================================
+   INPUTS
+   ===================================================== */
+
+
+/* ===== INPUT BOX ===== */
+
+.input-box {
+
+    position: relative;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* ===== INPUT ===== */
+
+.input-box input {
+
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 43px;
+
+    border: 1px solid #DDDDDD;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    font-size: 13px;
+
+}
+
+
+/* ===== INPUT FOCUS ===== */
+
+.input-box input:focus {
+
+    border-color: #E8B700;
+
+    box-shadow:
+        0 0 0 3px rgba(232,183,0,0.12);
+
+}
+
+
+/* ===== INPUT ICON ===== */
+
+.input-box > i {
+
+    position: absolute;
+
+    left: 14px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #333;
+
+}
+
+
+/* ===== EYE BUTTON ===== */
+
+.eye-button {
+
+    position: absolute;
+
+    right: 13px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    color: #777;
+
+}
+
+
+/* =====================================================
+   LOGIN OPTIONS
+   ===================================================== */
+
+
+/* ===== OPTIONS ===== */
+
+.login-options {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin: 5px 0 20px;
+
+    font-size: 12px;
+
+}
+
+
+/* ===== REMEMBER ===== */
+
+.login-options label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+
+/* ===== CHECKBOX ===== */
+
+.login-options input {
+
+    accent-color: #E5B500;
+
+}
+
+
+/* ===== FORGOT ===== */
+
+.login-options a {
+
+    color: #947400;
+
+    text-decoration: none;
+
+}
+
+
+/* =====================================================
+   SIGN IN
+   ===================================================== */
+
+
+/* ===== SIGN IN BUTTON ===== */
+
+.signin-button {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 43px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #FFC900;
+
+    color: #181818;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+/* ===== BUTTON ARROW ===== */
+
+.signin-button i {
+
+    position: absolute;
+
+    right: 16px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 17px;
+
+}
+
+
+/* ===== BUTTON HOVER ===== */
+
+.signin-button:hover {
+
+    background: #F0B800;
+
+}
+
+
+/* =====================================================
+   DIVIDER
+   ===================================================== */
+
+
+/* ===== DIVIDER ===== */
+
+.divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 18px 0;
+
+}
+
+
+/* ===== DIVIDER LINE ===== */
+
+.divider span {
+
+    flex: 1;
+
+    height: 1px;
+
+    background: #E4E4E4;
+
+}
+
+
+/* ===== DIVIDER TEXT ===== */
+
+.divider p {
+
+    font-size: 12px;
+
+    color: #777;
+
+}
+
+
+/* =====================================================
+   ADMIN LOGIN
+   ===================================================== */
+
+
+/* ===== ADMIN BUTTON ===== */
+
+.admin-button {
+
+    width: 100%;
+
+    height: 40px;
+
+    border: 1px solid #DDDDDD;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+}
+
+
+/* ===== ADMIN HOVER ===== */
+
+.admin-button:hover {
+
+    background: #FFFBE8;
+
+    border-color: #E5B600;
+
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+
+/* ===== COPYRIGHT ===== */
+
+.copyright {
+
+    margin-top: 14px;
+
+    font-size: 11px;
+
+    color: #777;
+
+    text-align: center;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+
+/* ===== TABLET ===== */
+
+@media (max-width: 1000px) {
+
+    .login-container {
+
+        grid-template-columns: 1fr;
+
+        width: calc(100% - 30px);
+
+    }
+
+
+    .left-section {
+
+        min-height: 420px;
+
+    }
+
+
+    .right-section {
+
+        padding: 40px 25px;
+
+    }
+
+}
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+
+    .login-container {
+
+        width: 100%;
+
+        margin: 0;
+
+        border-radius: 0;
+
+        border: none;
+
+    }
+
+
+    .left-section {
+
+        padding: 30px 25px;
+
+        min-height: 430px;
+
+    }
+
+
+    .brand-text h1 {
+
+        font-size: 27px;
+
+    }
+
+
+    .brand-logo {
+
+        width: 60px;
+
+        height: 60px;
+
+    }
+
+
+    .brand-logo > i {
+
+        font-size: 36px;
+
+    }
+
+
+    .intro {
+
+        margin-top: 35px;
+
+    }
+
+
+    .intro h2 {
+
+        font-size: 24px;
+
+    }
+
+
+    .right-section {
+
+        padding: 30px 20px;
+
+    }
+
+
+    .login-card {
+
+        padding: 28px 22px;
+
+    }
+
+}
+
+/* ===== ERROR MESSAGE ===== */
+
+.error-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    background: #fdecea;
+
+    color: #c0392b;
+
+    border: 1px solid #f5b7b1;
+
+    border-radius: 8px;
+
+    padding: 10px 14px;
+
+    margin-bottom: 18px;
+
+    font-size: 14px;
+
+}
+
+
+.error-box i {
+
+    font-size: 18px;
+
+}
+
+
+/* ===== REGISTER LINK ===== */
+
+.register-link {
+
+    text-align: center;
+
+    margin-top: 14px;
+
+    font-size: 14px;
+
+    color: #6b7c93;
+
+}
+
+
+.register-link a {
+
+    color: #4e6ef2;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+}
+
+
+.register-link a:hover {
+
+    text-decoration: underline;
+
+}

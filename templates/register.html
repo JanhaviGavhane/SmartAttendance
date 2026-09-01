@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ===== PAGE SETUP ===== -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Attendance | Teacher Registration</title>
+
+
+    <!-- ===== ICONS ===== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <!-- ===== LOGIN CSS ===== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/login.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ===== MAIN LOGIN BOX ===== -->
+
+    <div class="login-container">
+
+
+        <!-- =================================================
+             LEFT SECTION
+             ================================================= -->
+
+        <section class="left-section">
+
+
+            <!-- ===== BRAND ===== -->
+
+            <div class="brand">
+
+                <div class="brand-logo">
+
+                    <i class="bi bi-check-lg"></i>
+
+                    <div class="brand-mic">
+                        <i class="bi bi-mic-fill"></i>
+                    </div>
+
+                </div>
+
+
+                <div class="brand-text">
+
+                    <h1>
+                        Smart
+                        <span>Attendance</span>
+                    </h1>
+
+                    <p>Voice. Verified. Effortless.</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===== INTRO ===== -->
+
+            <div class="intro">
+
+                <h2>
+                    Create Your Teacher
+                    <br>
+                    Account
+                </h2>
+
+
+                <p>
+                    Register to start taking voice-based
+                    attendance, tracking student presence,
+                    managing syllabus and viewing insights.
+                </p>
+
+            </div>
+
+
+            <!-- ===== FEATURES ===== -->
+
+            <div class="features">
+
+
+                <!-- ===== FEATURE 1 ===== -->
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-mic-fill"></i>
+                    </div>
+
+                    <span>
+                        Voice Based Attendance
+                    </span>
+
+                </div>
+
+
+                <!-- ===== FEATURE 2 ===== -->
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-bar-chart-fill"></i>
+                    </div>
+
+                    <span>
+                        Smart Analytics &amp; Reports
+                    </span>
+
+                </div>
+
+
+                <!-- ===== FEATURE 3 ===== -->
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-book"></i>
+                    </div>
+
+                    <span>
+                        Syllabus Tracking
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             RIGHT SECTION
+             ================================================= -->
+
+        <section class="right-section">
+
+
+            <!-- ===== REGISTER CARD ===== -->
+
+            <div class="login-card">
+
+
+                <!-- ===== REGISTER TITLE ===== -->
+
+                <div class="login-title">
+
+                    <i class="bi bi-mortarboard-fill"></i>
+
+                    <h2>
+                        Teacher <span>Register</span>
+                    </h2>
+
+                </div>
+
+
+                <!-- ===== SUBTITLE ===== -->
+
+                <p class="subtitle">
+                    Create your account to get started.
+                </p>
+
+
+                {% if error %}
+
+                <!-- ===== ERROR MESSAGE ===== -->
+
+                <div class="error-box">
+
+                    <i class="bi bi-exclamation-circle"></i>
+
+                    <span>{{ error }}</span>
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- ===== REGISTER FORM ===== -->
+
+                <form action="{{ url_for('register') }}" method="POST">
+
+
+                    <!-- ===== USERNAME ===== -->
+
+                    <div class="input-box">
+
+                        <i class="bi bi-person"></i>
+
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="Username"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- ===== PASSWORD ===== -->
+
+                    <div class="input-box">
+
+                        <i class="bi bi-lock"></i>
+
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+
+                        <!-- ===== PASSWORD EYE ===== -->
+
+                        <button
+                            type="button"
+                            class="eye-button"
+                        >
+
+                            <i class="bi bi-eye"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- ===== CONFIRM PASSWORD ===== -->
+
+                    <div class="input-box">
+
+                        <i class="bi bi-lock"></i>
+
+                        <input
+                            type="password"
+                            name="confirm_password"
+                            placeholder="Confirm Password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+
+                        <!-- ===== PASSWORD EYE ===== -->
+
+                        <button
+                            type="button"
+                            class="eye-button"
+                        >
+
+                            <i class="bi bi-eye"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- ===== CREATE ACCOUNT ===== -->
+
+                    <button
+                        type="submit"
+                        class="signin-button"
+                    >
+
+                        <span>
+                            Create Account
+                        </span>
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </button>
+
+
+                </form>
+
+
+                <!-- ===== DIVIDER ===== -->
+
+                <div class="divider">
+
+                    <span></span>
+
+                    <p>or</p>
+
+                    <span></span>
+
+                </div>
+
+
+                <!-- ===== LOGIN LINK ===== -->
+
+                <p class="admin-button" style="justify-content:center;">
+
+                    <span>
+                        Already have an account?
+                        <a href="{{ url_for('login') }}">Sign in</a>
+                    </span>
+
+                </p>
+
+
+            </div>
+
+
+            <!-- ===== COPYRIGHT ===== -->
+
+            <p class="copyright">
+                © 2026 Smart Attendance. All rights reserved.
+            </p>
+
+
+        </section>
+
+
+    </div>
+
+
+    <!-- ===== LOGIN JS ===== -->
+
+    <script
+        src="{{ url_for('static', filename='js/login.js') }}">
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+# ===== Python =====
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# ===== Virtual environments =====
+venv/
+.venv/
+env/
+ENV/
+
+# ===== Runtime data (never commit local DBs or test data) =====
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+data/*.csv
+data/*.json
+data/uploads/*
+!data/uploads/.gitkeep
+data/uploads/*.xlsx
+data/uploads/*.docx
+data/uploads/*.csv
+!data/uploads/**/.gitkeep
+
+# Generated attendance result files
+data/uploads/attendance_results/
+
+# Local test files (not tests/ which is the committed suite)
+temp/
+temporary/
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Editors =====
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===== Environment =====
+.env
+.env.*

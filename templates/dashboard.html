@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ===== PAGE SETUP ===== -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Attendance | Dashboard</title>
+
+
+    <!-- ===== ICONS ===== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <!-- ===== DASHBOARD CSS ===== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         DASHBOARD MAIN LAYOUT
+         ===================================================== -->
+
+    <div class="dashboard-layout">
+
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+        <aside class="sidebar">
+
+
+            <!-- ===== LOGO ===== -->
+
+            <div class="sidebar-brand">
+
+                <div class="sidebar-logo">
+
+                    <i class="bi bi-check-lg"></i>
+
+                    <div class="sidebar-mic">
+                        <i class="bi bi-mic-fill"></i>
+                    </div>
+
+                </div>
+
+
+                <div class="brand-text">
+
+                    <h2>
+                        Smart
+                        <span>Attendance</span>
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===== SIDEBAR MENU ===== -->
+
+            <nav class="sidebar-menu">
+
+
+                <!-- ===== DASHBOARD ===== -->
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="menu-item active"
+                >
+
+                    <i class="bi bi-house-door"></i>
+
+                    <span>
+                        Dashboard
+                    </span>
+
+                </a>
+
+
+                <!-- ===== ATTENDANCE ===== -->
+
+                <a
+                    href="{{ url_for('attendance') }}"
+                    class="menu-item"
+                >
+
+                    <i class="bi bi-mic"></i>
+
+                    <span>
+                        Attendance
+                    </span>
+
+                </a>
+
+
+                <!-- ===== STUDENTS ===== -->
+
+                <a
+                    href="{{ url_for('students') }}"
+                    class="menu-item"
+                >
+
+                    <i class="bi bi-people"></i>
+
+                    <span>
+                        Students
+                    </span>
+
+                </a>
+
+
+                <!-- ===== SYLLABUS ===== -->
+
+                <a
+                    href="{{url_for('syllabus')}}"
+                    class="menu-item"
+                >
+
+                    <i class="bi bi-journal-text"></i>
+
+                    <span>
+                        Syllabus Tracker
+                    </span>
+
+                </a>
+
+
+                <!-- ===== REPORTS ===== -->
+
+                <a
+                    href="{{url_for('reports')}}"
+                    class="menu-item"
+                >
+
+                    <i class="bi bi-bar-chart"></i>
+
+                    <span>
+                        Reports
+                    </span>
+
+                </a>
+
+
+                <!-- ===== CALENDAR ===== -->
+
+                <a
+                    href="{{url_for('calendar')}}"
+                    class="menu-item"
+                >
+
+                    <i class="bi bi-calendar3"></i>
+
+                    <span>
+                        Calendar
+                    </span>
+
+                </a>
+
+
+                <!-- ===== SETTINGS ===== -->
+
+                <a
+                    href="{{url_for('settings')}}"
+                    class="menu-item"
+                >
+
+                    <i class="bi bi-gear"></i>
+
+                    <span>
+                        Settings
+                    </span>
+
+                </a>
+
+
+            </nav>
+
+
+            <!-- =================================================
+                 SIDEBAR BOTTOM
+                 ================================================= -->
+
+            <div class="sidebar-bottom">
+
+
+                <!-- ===== LOGOUT ===== -->
+
+                <a
+                    href="{{ url_for('logout') }}"
+                    class="menu-item logout"
+                >
+
+                    <i class="bi bi-box-arrow-left"></i>
+
+                    <span>
+                        Logout
+                    </span>
+
+                </a>
+
+
+            </div>
+
+
+        </aside>
+
+
+
+        <!-- =================================================
+             MAIN CONTENT
+             ================================================= -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 TOP HEADER
+                 ================================================= -->
+
+            <header class="dashboard-header">
+
+
+                <!-- ===== GREETING ===== -->
+
+                <div class="header-left">
+
+                    <h1>
+                        Good Morning, {{ session.get('username', 'Teacher') }} 👋
+                    </h1>
+
+                    <p>
+                        Here's what's happening in your classes today.
+                    </p>
+
+                </div>
+
+
+                <!-- ===== DATE ===== -->
+
+                <div class="header-date">
+
+                    <i class="bi bi-calendar3"></i>
+
+                    <span>
+                        {{ today_display }}
+                    </span>
+
+                </div>
+
+
+            </header>
+
+
+
+            <!-- =================================================
+                 STATISTICS CARDS
+                 ================================================= -->
+
+            <section class="stats-container">
+
+
+                <!-- ===== TOTAL STUDENTS ===== -->
+
+                <div class="stat-card">
+
+                    <div class="stat-content">
+
+                        <p>
+                            Total Students
+                        </p>
+
+                        <h2>
+                            {{ stats.total_students }}
+                        </h2>
+
+                        <a href="{{ url_for('students') }}">
+                            View all students →
+                        </a>
+
+                    </div>
+
+
+                    <div class="stat-icon students-icon">
+
+                        <i class="bi bi-people-fill"></i>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ===== PRESENT TODAY ===== -->
+
+                <div class="stat-card">
+
+                    <div class="stat-content">
+
+                        <p>
+                            Present Today
+                        </p>
+
+                        <h2>
+                            {{ stats.today.present }}
+                        </h2>
+
+                        <span class="success-text">
+                            {{ stats.today.percentage }}%
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-icon present-icon">
+
+                        <i class="bi bi-check-lg"></i>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ===== ATTENDANCE ===== -->
+
+                <div class="stat-card">
+
+                    <div class="stat-content">
+
+                        <p>
+                            Attendance %
+                        </p>
+
+                        <h2>
+                            {{ stats.overall.percentage }}%
+                        </h2>
+
+                        <span>
+                            Overall attendance
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-icon chart-icon">
+
+                        <i class="bi bi-bar-chart-fill"></i>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ===== CLASSES TODAY ===== -->
+
+                <div class="stat-card">
+
+                    <div class="stat-content">
+
+                        <p>
+                            Absent Today
+                        </p>
+
+                        <h2>
+                            {{ stats.today.absent }}
+                        </h2>
+
+                        <a href="{{ url_for('attendance') }}">
+                            Take attendance →
+                        </a>
+
+                    </div>
+
+
+                    <div class="stat-icon calendar-icon">
+
+                        <i class="bi bi-calendar-event"></i>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 LOWER DASHBOARD
+                 ================================================= -->
+
+            <section class="dashboard-cards">
+
+
+                <!-- =================================================
+                     TODAY'S ATTENDANCE
+                     ================================================= -->
+
+                <div class="dashboard-card today-attendance">
+
+
+                    <!-- ===== CARD TITLE ===== -->
+
+                    <div class="card-title">
+
+                        <h3>
+                            Today's Attendance
+                        </h3>
+
+                    </div>
+
+
+                    <!-- ===== CLASS TYPE ===== -->
+
+                    <span class="class-type">
+                        {% if stats.today.sessions %}
+                            {{ stats.today.sessions[0].lecture_type }}
+                        {% else %}
+                            Theory
+                        {% endif %}
+                    </span>
+
+
+                    <!-- ===== SUBJECT ===== -->
+
+                    <h2>
+                        {% if stats.today.sessions %}
+                            {{ stats.today.sessions[0].subject }}
+                        {% else %}
+                            No session yet today
+                        {% endif %}
+                    </h2>
+
+
+                    <!-- ===== CLASS TIME ===== -->
+
+                    <div class="class-info">
+
+                        <div>
+
+                            <i class="bi bi-clock"></i>
+
+                            <span>
+                                {% if stats.today.sessions %}
+                                    {{ stats.today.sessions[0].date }} · {{ stats.today.sessions[0].time }}
+                                {% else %}
+                                    Start a session to begin
+                                {% endif %}
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <i class="bi bi-people"></i>
+
+                            <span>
+                                Total Students: {{ stats.total_students }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ===== START ATTENDANCE ===== -->
+
+                    <a
+                        href="{{ url_for('attendance') }}"
+                        class="start-attendance-button"
+                    >
+
+                        <i class="bi bi-mic-fill"></i>
+
+                        Start Attendance
+
+                    </a>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     RECENT SESSIONS
+                     ================================================= -->
+
+                <div class="dashboard-card recent-sessions">
+
+
+                    <!-- ===== CARD HEADER ===== -->
+
+                    <div class="card-heading">
+
+                        <h3>
+                            Recent Sessions
+                        </h3>
+
+                    </div>
+
+
+                    <!-- ===== SESSION ROWS ===== -->
+
+                    {% for session in stats.recent_sessions %}
+
+                    <div class="session-row">
+
+                        <div>
+
+                            <strong>
+                                {{ session.subject }}
+                            </strong>
+
+                            <span>
+                                {{ session.date }} · {{ session.lecture_type }}
+                            </span>
+
+                        </div>
+
+                        <small>
+                            {{ session.percentage }}%
+                        </small>
+
+                    </div>
+
+                    {% else %}
+
+                    <div class="session-row">
+
+                        <div>
+
+                            <strong>
+                                No sessions yet
+                            </strong>
+
+                            <span>
+                                Attendance will appear here.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+
+                    <!-- ===== VIEW ALL ===== -->
+
+                    <a
+                        href="{{ url_for('reports') }}"
+                        class="view-sessions"
+                    >
+                        View reports →
+                    </a>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SYLLABUS PROGRESS
+                     ================================================= -->
+
+                <div class="dashboard-card syllabus-progress">
+
+
+                    <!-- ===== CARD HEADER ===== -->
+
+                    <div class="card-heading">
+
+                        <h3>
+                            Syllabus Progress
+                        </h3>
+
+                    </div>
+
+
+                    <!-- ===== SUBJECT ===== -->
+
+                    <div class="syllabus-subject">
+
+                        <strong>
+                            Syllabus Overview
+                        </strong>
+
+                        <span>
+                            {{ stats.syllabus.percentage }}%
+                        </span>
+
+                    </div>
+
+
+                    <!-- ===== PROGRESS BAR ===== -->
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"
+                             style="width: {{ stats.syllabus.percentage }}%;"></div>
+
+                    </div>
+
+
+                    <!-- ===== PROGRESS TEXT ===== -->
+
+                    <div class="progress-info">
+
+                        <span>
+                            {{ stats.syllabus.completed }} of {{ stats.syllabus.total }} topics completed
+                        </span>
+
+                        <strong>
+                            {{ stats.syllabus.percentage }}%
+                        </strong>
+
+                    </div>
+
+
+                    <!-- ===== SYLLABUS LINK ===== -->
+
+                    <a
+                        href="{{ url_for('syllabus') }}"
+                        class="syllabus-link"
+                    >
+                        Go to Syllabus Tracker →
+                    </a>
+
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+
+    </div>
+
+
+</body>
+
+</html>

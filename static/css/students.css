@@ -1,0 +1,312 @@
+/* ===== STUDENTS PAGE ===== */
+
+.students-page {
+    padding: 35px;
+    min-height: 100vh;
+}
+
+
+/* ===== PAGE HEADER ===== */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+.page-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+}
+
+
+.page-header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+
+.page-description {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+
+/* ===== ADD BUTTON ===== */
+
+.add-student-button {
+    border: none;
+    padding: 13px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+.add-student-button i {
+    margin-right: 7px;
+}
+
+
+/* ===== SUMMARY ===== */
+
+.student-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+
+.summary-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 22px;
+    border-radius: 16px;
+    background: white;
+    border: 1px solid #eeeeee;
+}
+
+
+.summary-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+
+.summary-card p {
+    margin: 0 0 5px;
+    font-size: 13px;
+}
+
+
+.summary-card h2 {
+    margin: 0;
+    font-size: 25px;
+}
+
+
+/* ===== STUDENT LIST ===== */
+
+.student-list-card {
+    background: white;
+    border-radius: 18px;
+    border: 1px solid #eeeeee;
+    padding: 24px;
+}
+
+
+/* ===== TOOLBAR ===== */
+
+.student-toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    padding: 10px 14px;
+    width: 350px;
+}
+
+
+.search-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+
+.import-button {
+    border: 1px solid #dddddd;
+    background: white;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.import-button i {
+    margin-right: 6px;
+}
+
+
+/* ===== TABLE ===== */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+th {
+    text-align: left;
+    padding: 14px;
+    font-size: 12px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+td {
+    padding: 16px 14px;
+    font-size: 14px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+
+/* ===== STATUS ===== */
+
+.status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+
+.status.active {
+    background: #edf8ef;
+}
+
+
+/* ===== ACTION ===== */
+
+.action-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 768px) {
+
+    .students-page {
+        padding: 20px;
+    }
+
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+
+    .student-summary {
+        grid-template-columns: 1fr;
+    }
+
+
+    .student-toolbar {
+        flex-direction: column;
+    }
+
+
+    .search-box {
+        width: auto;
+    }
+
+}
+
+
+/* ===== MESSAGE BANNER ===== */
+
+.message-banner {
+    background: #fff8d5;
+    color: #6f5e00;
+    border: 1px solid #eadb91;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+.message-banner.success {
+    background: #edf8ef;
+    color: #2f6b3a;
+    border-color: #cfe8d3;
+}
+
+.message-banner.error {
+    background: #fdecec;
+    color: #a43b3b;
+    border-color: #f4c8c8;
+}
+
+
+/* ===== UPLOAD ===== */
+
+.upload-trigger {
+    background: #f3d85d;
+    color: #4d4100;
+    border: none;
+}
+
+.upload-options {
+    background: white;
+    border: 1px solid #eedfb2;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+}
+
+.upload-options p {
+    font-size: 13px;
+    color: #555;
+}
+
+.upload-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.upload-actions .import-button {
+    cursor: pointer;
+}
+
+.empty-list {
+    text-align: center;
+    color: #999;
+    padding: 30px 0;
+    font-size: 14px;
+}
+
+.delete-student {
+    border: none;
+    background: transparent;
+    color: #c05555;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.delete-student:hover {
+    color: #a43b3b;
+}

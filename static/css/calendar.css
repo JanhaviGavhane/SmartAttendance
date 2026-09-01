@@ -1,0 +1,290 @@
+
+/* ===== CALENDAR PAGE ===== */
+
+.calendar-page {
+    padding: 35px;
+    min-height: 100vh;
+}
+
+
+/* ===== PAGE HEADER ===== */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+.page-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+}
+
+
+.page-header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+
+.page-description {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+
+/* ===== TODAY BUTTON ===== */
+
+.today-button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+/* ===== CALENDAR CARD ===== */
+
+.calendar-card {
+    background: white;
+    border: 1px solid #eeeeee;
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+
+/* ===== MONTH HEADER ===== */
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+
+.calendar-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+
+.calendar-nav {
+    width: 38px;
+    height: 38px;
+    border: 1px solid #eeeeee;
+    background: white;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+
+/* ===== WEEK DAYS ===== */
+
+.week-days,
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+
+.week-days div {
+    text-align: center;
+    padding: 12px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* ===== CALENDAR DAY ===== */
+
+.calendar-day {
+    min-height: 85px;
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    cursor: pointer;
+}
+
+
+.calendar-day:hover {
+    background: #fffdf0;
+}
+
+
+.other-month {
+    opacity: 0.35;
+}
+
+
+.current-day {
+    border: 2px solid #e6c84f;
+}
+
+
+.day-number {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.session-dot {
+    display: block;
+    margin-top: 10px;
+    font-size: 11px;
+}
+
+
+/* ===== RECENT SESSIONS ===== */
+
+.sessions-card {
+    background: white;
+    border: 1px solid #eeeeee;
+    border-radius: 18px;
+    padding: 25px;
+}
+
+
+.sessions-card h2 {
+    margin: 0;
+}
+
+
+.sessions-card > p {
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+
+/* ===== SESSION ITEM ===== */
+
+.session-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 5px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.session-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.session-info {
+    flex: 1;
+}
+
+
+.session-info h3 {
+    margin: 0;
+    font-size: 14px;
+}
+
+
+.session-info p {
+    margin: 5px 0 0;
+    font-size: 12px;
+}
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 650px) {
+
+    .calendar-page {
+        padding: 20px;
+    }
+
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+
+    .calendar-day {
+        min-height: 55px;
+        padding: 6px;
+    }
+
+
+    .session-item {
+        align-items: flex-start;
+    }
+
+}
+
+
+/* ===== ADDITIONAL CALENDAR STYLES ===== */
+
+.empty-sessions {
+    text-align: center;
+    color: #999;
+    padding: 25px 0;
+    font-size: 14px;
+}
+
+.session-detail {
+    margin-top: 20px;
+    border: 1px solid #f1e2a0;
+    border-radius: 14px;
+    padding: 18px;
+    background: #fffdf6;
+}
+
+.detail-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-heading h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.close-detail {
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+    color: #888;
+}
+
+.detail-body {
+    margin-top: 12px;
+}
+
+.detail-session {
+    border-bottom: 1px solid #f1e2a0;
+    padding: 10px 0;
+    font-size: 13px;
+}
+
+.detail-session:last-child {
+    border-bottom: none;
+}
+
+.detail-session strong {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.detail-session span {
+    color: #555;
+}
+
+

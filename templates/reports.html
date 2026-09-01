@@ -1,0 +1,679 @@
+<!-- ===== REPORTS PAGE ===== -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ===== PAGE SETTINGS ===== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Reports - Smart Attendance</title>
+
+
+    <!-- ===== ICONS ===== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <!-- ===== REPORTS CSS ===== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/reports.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ===== MAIN PAGE ===== -->
+
+    <div class="reports-page">
+
+
+        <!-- ===== PAGE HEADER ===== -->
+
+        <div class="page-header">
+
+            <div>
+
+                <p class="page-label">
+                    ATTENDANCE ANALYTICS
+                </p>
+
+                <h1>
+                    Reports
+                </h1>
+
+                <p class="page-description">
+                    View attendance performance and generate reports.
+                </p>
+
+            </div>
+
+
+            <!-- ===== DOWNLOAD BUTTON ===== -->
+
+            <div class="header-actions">
+
+                <a
+                    class="download-button"
+                    href="/reports/attendance-csv"
+                >
+                    <i class="bi bi-download"></i>
+                    Attendance CSV
+                </a>
+
+                <button
+                    class="download-button"
+                    id="downloadReportButton"
+                >
+                    <i class="bi bi-download"></i>
+                    Download Report
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ===== SUMMARY CARDS ===== -->
+
+        <div class="report-summary">
+
+
+            <!-- ===== OVERALL ATTENDANCE ===== -->
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="bi bi-bar-chart"></i>
+                </div>
+
+                <div>
+
+                    <p>
+                        Attendance %
+                    </p>
+
+                    <h2 id="overallPercent">
+                        0%
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===== PRESENT ===== -->
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="bi bi-person-check"></i>
+                </div>
+
+                <div>
+
+                    <p>
+                        Present
+                    </p>
+
+                    <h2 id="totalPresent">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===== ABSENT ===== -->
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="bi bi-person-x"></i>
+                </div>
+
+                <div>
+
+                    <p>
+                        Absent
+                    </p>
+
+                    <h2 id="totalAbsent">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===== TOTAL RECORDS ===== -->
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="bi bi-clipboard-data"></i>
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Records
+                    </p>
+
+                    <h2 id="totalRecords">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ===== FILTER CARD ===== -->
+
+        <div class="filter-card">
+
+            <div class="filter-group">
+
+                <label for="reportDateFrom">
+                    Date From
+                </label>
+
+                <input
+                    type="date"
+                    id="reportDateFrom"
+                >
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label for="reportDateTo">
+                    Date To
+                </label>
+
+                <input
+                    type="date"
+                    id="reportDateTo"
+                >
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label for="reportSubject">
+                    Subject
+                </label>
+
+                <select id="reportSubject">
+
+                    <option value="">
+                        All Subjects
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label for="reportType">
+                    Lecture Type
+                </label>
+
+                <select id="reportType">
+
+                    <option value="">
+                        All Types
+                    </option>
+
+                    <option value="Theory">
+                        Theory
+                    </option>
+
+                    <option value="Practical">
+                        Practical
+                    </option>
+
+                    <option value="Extra">
+                        Extra
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label for="reportStudent">
+                    Student (Roll No.)
+                </label>
+
+                <input
+                    type="number"
+                    id="reportStudent"
+                    placeholder="Any roll"
+                >
+
+            </div>
+
+
+            <button
+                class="generate-button"
+                id="generateReportButton"
+            >
+
+                <i class="bi bi-search"></i>
+                Generate Report
+
+            </button>
+
+        </div>
+
+
+
+        <!-- ===== CHARTS ===== -->
+
+        <div class="performance-card">
+
+            <div class="card-heading">
+
+                <div>
+
+                    <h2>
+                        Attendance Charts
+                    </h2>
+
+                    <p>
+                        Visual overview of present vs absent, trends and
+                        frequently absent students.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="charts-grid">
+
+                <div class="chart-box">
+                    <h3>Present vs Absent</h3>
+                    <canvas id="chartPresentAbsent" width="360" height="220"></canvas>
+                </div>
+
+                <div class="chart-box">
+                    <h3>Attendance % by Date</h3>
+                    <canvas id="chartDateTrend" width="360" height="220"></canvas>
+                </div>
+
+                <div class="chart-box">
+                    <h3>Attendance % by Student</h3>
+                    <canvas id="chartStudent" width="360" height="220"></canvas>
+                </div>
+
+                <div class="chart-box">
+                    <h3>Frequently Absent</h3>
+                    <canvas id="chartFrequentAbsent" width="360" height="220"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===== STUDENT PERFORMANCE ===== -->
+
+        <div class="performance-card">
+
+            <div class="card-heading">
+
+                <div>
+
+                    <h2>
+                        Student Performance
+                    </h2>
+
+                    <p>
+                        Attendance percentage for each student.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Roll No.
+                            </th>
+
+                            <th>
+                                Student Name
+                            </th>
+
+                            <th>
+                                Present
+                            </th>
+
+                            <th>
+                                Absent
+                            </th>
+
+                            <th>
+                                Attendance %
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="studentPerformanceBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===== LOW ATTENDANCE ===== -->
+
+        <div class="performance-card">
+
+            <div class="card-heading">
+
+                <div>
+
+                    <h2>
+                        Below 75% Attendance
+                    </h2>
+
+                    <p>
+                        Students below the 75% attendance threshold.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Roll No.
+                            </th>
+
+                            <th>
+                                Student Name
+                            </th>
+
+                            <th>
+                                Attendance %
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="belowThresholdBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===== FREQUENTLY ABSENT ===== -->
+
+        <div class="performance-card">
+
+            <div class="card-heading">
+
+                <div>
+
+                    <h2>
+                        Frequently Absent
+                    </h2>
+
+                    <p>
+                        Students absent in 3 or more sessions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Roll No.
+                            </th>
+
+                            <th>
+                                Student Name
+                            </th>
+
+                            <th>
+                                Absences
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="frequentAbsentBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===== DATE-WISE ATTENDANCE ===== -->
+
+        <div class="performance-card">
+
+            <div class="card-heading">
+
+                <div>
+
+                    <h2>
+                        Date-wise Attendance
+                    </h2>
+
+                    <p>
+                        Attendance totals grouped by date.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Present
+                            </th>
+
+                            <th>
+                                Absent
+                            </th>
+
+                            <th>
+                                Percentage
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="dateWiseBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===== SESSIONS ===== -->
+
+        <div class="performance-card">
+
+            <div class="card-heading">
+
+                <div>
+
+                    <h2>
+                        Attendance Sessions
+                    </h2>
+
+                    <p>
+                        Detailed sessions by date, subject and lecture type.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Time
+                            </th>
+
+                            <th>
+                                Subject
+                            </th>
+
+                            <th>
+                                Lecture Type
+                            </th>
+
+                            <th>
+                                Present
+                            </th>
+
+                            <th>
+                                Absent
+                            </th>
+
+                            <th>
+                                %
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="sessionsBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ===== REPORTS JS ===== -->
+
+    <script
+        src="{{ url_for('static', filename='js/reports.js') }}"
+    ></script>
+
+
+</body>
+
+</html>

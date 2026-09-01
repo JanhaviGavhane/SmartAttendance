@@ -1,0 +1,300 @@
+<!-- ===== STUDENTS PAGE ===== -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ===== PAGE SETTINGS ===== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Students - Smart Attendance</title>
+
+
+    <!-- ===== BOOTSTRAP ICONS ===== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <!-- ===== STUDENTS CSS ===== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/students.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ===== MAIN PAGE ===== -->
+
+    <div class="students-page">
+
+
+        <!-- ===== MESSAGE BANNER ===== -->
+
+        <div id="studentMessage"
+             class="message-banner"
+             style="display:none;"></div>
+
+
+        <!-- ===== PAGE HEADER ===== -->
+
+        <div class="page-header">
+
+            <div>
+
+                <p class="page-label">
+                    STUDENT MANAGEMENT
+                </p>
+
+                <h1>
+                    Students
+                </h1>
+
+                <p class="page-description">
+                    Upload a student list (Excel or Word) and manage roll numbers.
+                </p>
+
+            </div>
+
+
+            <!-- ===== UPLOAD BUTTON ===== -->
+
+            <label
+                class="import-button upload-trigger"
+                for="studentUpload"
+            >
+
+                <i class="bi bi-upload"></i>
+
+                Upload Student List
+
+            </label>
+
+            <input
+                type="file"
+                id="studentUpload"
+                accept=".xlsx,.xls,.docx"
+                style="display:none;"
+            >
+
+        </div>
+
+
+
+        <!-- ===== SUMMARY CARDS ===== -->
+
+        <div class="student-summary">
+
+
+            <!-- ===== TOTAL STUDENTS ===== -->
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="bi bi-people"></i>
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Students
+                    </p>
+
+                    <h2 id="totalStudents">
+                        {{ total_students }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===== PRESENT TODAY ===== -->
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="bi bi-person-check"></i>
+                </div>
+
+                <div>
+
+                    <p>
+                        Present Today
+                    </p>
+
+                    <h2 id="presentToday">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===== ABSENT TODAY ===== -->
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="bi bi-person-x"></i>
+                </div>
+
+                <div>
+
+                    <p>
+                        Absent Today
+                    </p>
+
+                    <h2 id="absentToday">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ===== UPLOAD OPTIONS ===== -->
+
+        <div class="upload-options"
+             id="uploadOptions"
+             style="display:none;">
+
+            <p>
+                File detected:
+                <strong id="uploadFileName"></strong>
+            </p>
+
+            <div class="upload-actions">
+
+                <button
+                    class="import-button"
+                    id="uploadMerge"
+                >
+                    <i class="bi bi-plus-lg"></i>
+                    Add to existing list
+                </button>
+
+                <button
+                    class="import-button"
+                    id="uploadReplace"
+                >
+                    <i class="bi bi-arrow-repeat"></i>
+                    Replace current list
+                </button>
+
+                <button
+                    class="import-button"
+                    id="uploadCancel"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ===== STUDENT LIST CARD ===== -->
+
+        <div class="student-list-card">
+
+
+            <!-- ===== SEARCH AREA ===== -->
+
+            <div class="student-toolbar">
+
+                <div class="search-box">
+
+                    <i class="bi bi-search"></i>
+
+                    <input
+                        type="text"
+                        id="studentSearch"
+                        placeholder="Search by roll number or name..."
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ===== STUDENT TABLE ===== -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Roll No.
+                            </th>
+
+                            <th>
+                                Student Name
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="studentTable">
+
+                        <!-- JS loads students here -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p class="empty-list"
+               id="emptyList"
+               style="display:none;">
+                No students uploaded yet. Upload an Excel or Word file above.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ===== STUDENTS JS ===== -->
+
+    <script
+        src="{{ url_for('static', filename='js/students.js') }}"
+    ></script>
+
+
+</body>
+
+</html>

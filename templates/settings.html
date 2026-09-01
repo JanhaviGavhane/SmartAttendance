@@ -1,0 +1,326 @@
+
+<!-- ===== SETTINGS PAGE ===== -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ===== PAGE SETTINGS ===== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Settings - Smart Attendance</title>
+
+
+    <!-- ===== ICONS ===== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <!-- ===== SETTINGS CSS ===== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/settings.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ===== MAIN SETTINGS PAGE ===== -->
+
+    <div class="settings-page">
+
+
+        <!-- ===== PAGE HEADER ===== -->
+
+        <div class="page-header">
+
+            <p class="page-label">
+                SYSTEM CONFIGURATION
+            </p>
+
+            <h1>
+                Settings
+            </h1>
+
+            <p class="page-description">
+                Manage your Smart Attendance preferences.
+            </p>
+
+        </div>
+
+
+
+        <!-- ===== PROFILE SETTINGS ===== -->
+
+        <div class="settings-card">
+
+            <!-- ===== CARD HEADING ===== -->
+
+            <div class="settings-heading">
+
+                <div class="settings-icon">
+
+                    <i class="bi bi-person"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>
+                        Profile
+                    </h2>
+
+                    <p>
+                        Manage your teacher profile.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===== PROFILE FORM ===== -->
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="teacherName"
+                        value="Teacher"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="teacherEmail"
+                        value="teacher@example.com"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ===== ATTENDANCE SETTINGS ===== -->
+
+        <div class="settings-card">
+
+            <!-- ===== CARD HEADING ===== -->
+
+            <div class="settings-heading">
+
+                <div class="settings-icon">
+
+                    <i class="bi bi-mic"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>
+                        Attendance
+                    </h2>
+
+                    <p>
+                        Configure attendance behaviour.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ===== VOICE ATTENDANCE ===== -->
+
+            <div class="setting-row">
+
+                <div>
+
+                    <h3>
+                        Voice Attendance
+                    </h3>
+
+                    <p>
+                        Allow students to mark attendance using voice.
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="voiceAttendance"
+                        checked
+                    >
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+
+            <!-- ===== DUPLICATE PREVENTION ===== -->
+
+            <div class="setting-row">
+
+                <div>
+
+                    <h3>
+                        Duplicate Prevention
+                    </h3>
+
+                    <p>
+                        Prevent the same roll number from being marked twice.
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="duplicatePrevention"
+                        checked
+                    >
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ===== NOTIFICATION SETTINGS ===== -->
+
+        <div class="settings-card">
+
+            <!-- ===== CARD HEADING ===== -->
+
+            <div class="settings-heading">
+
+                <div class="settings-icon">
+
+                    <i class="bi bi-bell"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>
+                        Notifications
+                    </h2>
+
+                    <p>
+                        Manage attendance notifications.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ===== LOW ATTENDANCE ALERT ===== -->
+
+            <div class="setting-row">
+
+                <div>
+
+                    <h3>
+                        Low Attendance Alerts
+                    </h3>
+
+                    <p>
+                        Show students below the attendance threshold.
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="lowAttendanceAlert"
+                        checked
+                    >
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ===== SAVE BUTTON ===== -->
+
+        <button
+            class="save-button"
+            id="saveSettings"
+        >
+
+            <i class="bi bi-check-lg"></i>
+
+            Save Changes
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- ===== SETTINGS JS ===== -->
+
+    <script
+        src="{{ url_for('static', filename='js/settings.js') }}"
+    ></script>
+
+
+</body>
+
+</html>
