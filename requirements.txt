@@ -11,3 +11,4 @@ soundfile==0.14.0
 sounddevice==0.5.6
 onnxruntime==1.29.0
 pytest==9.1.1
+gunicorn
