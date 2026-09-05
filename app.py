@@ -825,6 +825,12 @@ def attendance_save():
     subject = str(data.get("subject", "")).strip()
     lecture_type = str(data.get("lecture_type", "")).strip()
 
+    # Client-generated identity for this intentional attendance run.
+    # Two legitimate sessions with the same minute-precision date/time/
+    # subject/lecture_type must NOT overwrite each other, so uniqueness
+    # comes from this uuid (the frontend issues a fresh one per run).
+    session_uuid = str(data.get("session_uuid", "") or "").strip() or None
+
     # Attendance mode: 'file_upload' (default) or 'class_strength'
     attendance_mode = str(
         data.get("attendance_mode", "file_upload")
@@ -997,7 +1003,8 @@ def attendance_save():
         records,
         attendance_mode=attendance_mode,
         class_strength=class_strength,
-        teacher_id=teacher_id
+        teacher_id=teacher_id,
+        session_uuid=session_uuid
     )
 
     # ============================================================

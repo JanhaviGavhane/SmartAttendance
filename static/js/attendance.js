@@ -48,6 +48,25 @@ let sessionOriginalFilename = "";   // name of the file uploaded for THIS sessio
 let attendanceMode = "file_upload";   // 'file_upload' | 'class_strength'
 let classStrength = 0;
 
+// Unique identity for the CURRENT attendance run. A fresh uuid is issued
+// every time a new session begins (page load / file upload / Start), and
+// sent with the save payload. The backend treats this as the session key,
+// so two genuine sessions with the same minute-precision date/time/
+// subject/lecture_type never overwrite each other, while re-saving the
+// SAME run still updates that one session (no duplicate sessions).
+let sessionUuid = "";
+
+function newSessionUuid() {
+
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+
+        return window.crypto.randomUUID();
+    }
+
+    return "sess-" + Date.now().toString(36) + "-" +
+        Math.random().toString(36).slice(2, 12);
+}
+
 
 
 // ===== VOICE ATTENDANCE (VOSK) =====
@@ -293,6 +312,11 @@ function uploadStudentList(file) {
 // attendance session begins so old/stale rolls can never leak into a
 // fresh session (a separate attendance history is never touched).
 function resetSessionState() {
+
+    // A fresh attendance run starts: new unique session identity so the
+    // save lands in its own session row (never overwriting a previous
+    // legitimate session saved in the same minute).
+    sessionUuid = newSessionUuid();
 
     // Clean live session values
     presentRollNumbers = [];
@@ -1432,6 +1456,7 @@ function saveAttendance() {
         attendance_mode: attendanceMode,
         class_strength: (attendanceMode === "class_strength"
                           ? classStrength : null),
+        session_uuid: sessionUuid,
         present: present,
         absent: absent,
         students: (attendanceMode === "file_upload"

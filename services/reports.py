@@ -23,7 +23,14 @@ from .storage import (
 # ============================================================
 
 def session_summaries(records):
-    """Group attendance records by (date, subject, lecture_type).
+    """Group attendance records by session identity.
+
+    Each genuine attendance session is a separate row. Records produced
+    by the app always carry a session_id, so two same-date sessions with
+    the same subject/lecture_type (but different real session runs) never
+    collapse into one. Legacy records without a session_id fall back to
+    grouping by (date, time, subject, lecture_type) so distinct times
+    still separate them.
 
     Returns a list of session dicts:
     {
@@ -38,7 +45,9 @@ def session_summaries(records):
     for r in records:
 
         key = (
+            r.get("session_id"),
             r.get("date", ""),
+            r.get("time", ""),
             r.get("subject", ""),
             r.get("lecture_type", "")
         )
