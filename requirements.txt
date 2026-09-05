@@ -9,6 +9,5 @@ python-docx==1.2.0
 xlrd==2.0.2
 soundfile==0.14.0
 sounddevice==0.5.6
-PyAudio==0.2.14
 onnxruntime==1.29.0
 pytest==9.1.1
